@@ -17,10 +17,16 @@ class InputTodo extends React.Component {
     // The method handles form-submit event
     handleSubmit = (e) => {
         e.preventDefault() //prevents page reload after for submission (default behavior)
-        this.props.addTodoProps(this.state.title)
-        this.setState({ //Clears text input after form submission
+        if (this.state.title.trim()) {
+            this.props.addTodoProps(this.state.title)
+            this.setState({ //Clears text input after form submission
             title: ""
-        })
+            })
+        } else {
+            alert("Please write item")
+        }
+
+        
     }
 
 
