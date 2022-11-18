@@ -25,12 +25,17 @@ class TodoContainer extends React.Component{
         ]
     };
 
+    // This method handles changes which occur in his child component
+    handleChange = (id) => {
+      console.log("clicked", id)
+    }
+
     // Showing all todos titles like a list on the page
     render(){
         return(
             <div>
                 <Header />
-                <TodosList todos={this.state.todos} />
+                <TodosList todos={this.state.todos} handleChangeProps={this.handleChange}/>
             </div>
         )
     }
