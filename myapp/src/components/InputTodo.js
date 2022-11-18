@@ -18,6 +18,9 @@ class InputTodo extends React.Component {
     handleSubmit = (e) => {
         e.preventDefault() //prevents page reload after for submission (default behavior)
         this.props.addTodoProps(this.state.title)
+        this.setState({ //Clears text input after form submission
+            title: ""
+        })
     }
 
 

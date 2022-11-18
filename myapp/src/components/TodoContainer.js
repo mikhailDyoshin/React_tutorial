@@ -54,7 +54,15 @@ class TodoContainer extends React.Component{
 
     // This method creates a new TodoItem component
     addTodoItem = (title) => {
-      console.log(title)
+      const newTodo = {
+        id: 4,
+        title: title,
+        completed: false
+      }
+
+      this.setState({
+        todos: [...this.state.todos, newTodo]
+      })
     }
 
     // Showing all todos titles like a list on the page
