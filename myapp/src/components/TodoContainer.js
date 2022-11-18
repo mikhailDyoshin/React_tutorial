@@ -42,7 +42,13 @@ class TodoContainer extends React.Component{
 
     // This method deletes todo state
     delTodo = (id) => {
-      console.log("deleted", id)
+      this.setState({
+        todos: [
+          ...this.state.todos.filter(todo => { //filter function returns a new array with elements which id does't equal input id
+            return todo.id !== id
+          })
+        ]
+      })
     }
 
     // Showing all todos titles like a list on the page
