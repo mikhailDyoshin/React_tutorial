@@ -40,6 +40,11 @@ class TodoContainer extends React.Component{
       }))
     }
 
+    // This method deletes todo state
+    delTodo = (id) => {
+      console.log("deleted", id)
+    }
+
     // Showing all todos titles like a list on the page
     render(){
         return(
@@ -48,6 +53,7 @@ class TodoContainer extends React.Component{
                 <TodosList 
                   todos={this.state.todos} 
                   handleChangeProps={this.handleChange}
+                  deleteTodoProps={this.delTodo}
                 />
             </div>
         )
