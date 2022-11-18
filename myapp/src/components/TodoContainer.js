@@ -68,7 +68,8 @@ class TodoContainer extends React.Component{
     // Showing all todos titles like a list on the page
     render(){
         return(
-            <div>
+          <div className="container">
+            <div className="inner">
                 <Header />
                 <InputTodo addTodoProps={this.addTodoItem}/>
                 <TodosList 
@@ -77,6 +78,8 @@ class TodoContainer extends React.Component{
                   deleteTodoProps={this.delTodo}
                 />
             </div>
+          </div>
+
         )
     }
 }
