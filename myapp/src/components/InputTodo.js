@@ -7,9 +7,11 @@ class InputTodo extends React.Component {
         title: ""
     }
 
-    // onChange method logs a "hello" word in the console when form's input changes
+    // onChange method can change the state of the component
     onChange = (e) => {
-        console.log("hello")
+        this.setState({
+            title: e.target.value
+        })
     }
 
 
