@@ -14,10 +14,16 @@ class InputTodo extends React.Component {
         })
     }
 
+    // The method handles form-submit event
+    handleSubmit = (e) => {
+        e.preventDefault() //prevents page reload after for submission (default behavior)
+        console.log(this.state.title)
+    }
+
 
     render() {
         return (
-            <form>
+            <form onSubmit={this.handleSubmit}>
                 <input 
                     type="text" 
                     placeholder="Add Todo..."
