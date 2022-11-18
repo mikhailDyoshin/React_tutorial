@@ -1,4 +1,6 @@
 import React from "react";
+import TodosList from "./TodosList";
+
 
 class TodoContainer extends React.Component{
     // Creating dictionary of the todos items
@@ -25,9 +27,9 @@ class TodoContainer extends React.Component{
     // Showing all todos titles like a list on the page
     render(){
         return(
-            <ul>
-                {this.state.todos.map(todo => (<li>{todo.title}</li>))}
-            </ul>
+            <div>
+                <TodosList todos={this.state.todos} />
+            </div>
         )
     }
 }
