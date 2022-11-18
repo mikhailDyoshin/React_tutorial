@@ -17,7 +17,7 @@ class InputTodo extends React.Component {
     // The method handles form-submit event
     handleSubmit = (e) => {
         e.preventDefault() //prevents page reload after for submission (default behavior)
-        console.log(this.state.title)
+        this.props.addTodoProps(this.state.title)
     }
 
 
