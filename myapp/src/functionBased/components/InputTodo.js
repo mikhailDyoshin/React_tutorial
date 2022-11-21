@@ -1,50 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 
-class InputTodo extends React.Component {
+const InputTodo = props => {
+    /* Desctucturing the hook 
+     (first item is the current value,
+     second one - a function that allows to update the current value) 
+    */
+    const [title, setTitle] = useState("")
 
-    // The state that InputTodo component holds
-    state = {
-        title: ""
+    const onChange = e => {
+        setTitle(e.target.value)
     }
 
-    // onChange method can change the state of the component
-    onChange = (e) => {
-        this.setState({
-            [e.target.name]: e.target.value
-        })
-    }
-
-    // The method handles form-submit event
-    handleSubmit = (e) => {
-        e.preventDefault() //prevents page reload after for submission (default behavior)
-        if (this.state.title.trim()) {
-            this.props.addTodoProps(this.state.title)
-            this.setState({ //Clears text input after form submission
-            title: ""
-            })
+    const handleSubmit = e => {
+        e.preventDefault()
+        if (title.trim()) {
+            props.addTodoProps(title)
+            setTitle("")
         } else {
             alert("Please write item")
         }
-
-        
     }
 
-
-    render() {
-        return (
-            <form onSubmit={this.handleSubmit} className="form-container">
-                <input 
-                    type="text"
-                    className="input-text" 
-                    placeholder="Add Todo..."
-                    value={this.state.title}
-                    name="title"
-                    onChange={this.onChange}
-                />
-                <button className="input-submit">Submit</button>
-            </form>
-        )
-    }
+    return (
+        <form onSubmit={handleSubmit} className="form-container">
+            <input 
+                type="text"
+                className="input-text"
+                placeholder="Add todo..."
+                value={title}
+                onChange={onChange}
+            />
+            <button className="input-submit">Submit</button>
+        </form>
+    )
 }
 
 export default InputTodo

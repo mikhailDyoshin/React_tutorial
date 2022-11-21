@@ -16,8 +16,8 @@ class InputTodo extends React.Component {
 
     // The method handles form-submit event
     handleSubmit = (e) => {
-        e.preventDefault() //prevents page reload after for submission (default behavior)
-        if (this.state.title.trim()) {
+        e.preventDefault() //prevents page reload after form submission (default behavior)
+        if (this.state.title.trim()) { // trim() deletes spaces around an input text
             this.props.addTodoProps(this.state.title)
             this.setState({ //Clears text input after form submission
             title: ""
