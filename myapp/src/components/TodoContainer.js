@@ -96,6 +96,11 @@ class TodoContainer extends React.Component{
       }
     }
 
+    // The method logs a message after todo-item is deleted
+    componentWillUnmount() {
+      console.log("Cleaning up...")
+    }
+
     // Showing all todos titles like a list on the page
     render(){
         return(
