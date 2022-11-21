@@ -8,21 +8,21 @@ class TodoContainer extends React.Component{
     // Creating dictionary of the todos items
     state = {
         todos: [
-          {
-            id: uuidv4(),
-            title: "Setup development environment",
-            completed: true
-          },
-          {
-            id: uuidv4(),
-            title: "Develop website and add content",
-            completed: false
-          },
-          {
-            id: uuidv4(),
-            title: "Deploy to live server",
-            completed: false
-          }
+          // {
+          //   id: uuidv4(),
+          //   title: "Setup development environment",
+          //   completed: true
+          // },
+          // {
+          //   id: uuidv4(),
+          //   title: "Develop website and add content",
+          //   completed: false
+          // },
+          // {
+          //   id: uuidv4(),
+          //   title: "Deploy to live server",
+          //   completed: false
+          // }
         ]
     };
 
@@ -75,6 +75,13 @@ class TodoContainer extends React.Component{
           return todo
         }),
       })
+    }
+
+    // The method downloads data from the side sourde
+    componentDidMount() {
+      fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
+        .then(responce => responce.json())
+        .then(data => this.setState({ todos: data }))
     }
 
     // Showing all todos titles like a list on the page
