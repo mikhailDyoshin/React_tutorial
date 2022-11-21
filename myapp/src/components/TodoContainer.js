@@ -67,7 +67,14 @@ class TodoContainer extends React.Component{
 
     // The method changes todos state after updates in InputTodo-component while it's in editing mode
     setUpdate = (updatedTitle, id) => {
-      console.log(updatedTitle, id)
+      this.setState({
+        todos: this.state.todos.map(todo => {
+          if (todo.id === id) {
+            todo.title = updatedTitle
+          }
+          return todo
+        }),
+      })
     }
 
     // Showing all todos titles like a list on the page
