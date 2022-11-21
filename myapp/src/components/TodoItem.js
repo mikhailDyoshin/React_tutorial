@@ -8,11 +8,18 @@ class TodoItem extends React.Component{
         editing: false,
     }
 
-    // The methos change switch editing state from false to true
+    // The method change switch editing state from false to true
     handleEditing = () => {
         this.setState({
             editing: true,
         })
+    }
+
+    // The method exits editing mode
+    handleUpdatedDone = (event) => {
+        if (event.key === "Enter") {
+            this.setState({editing: false})
+        }
     }
 
     render() {
@@ -66,7 +73,8 @@ class TodoItem extends React.Component{
                     value={title}
                     onChange={e => {
                         this.props.setUpdate(e.target.value, id)
-                    }} 
+                    }}
+                    onKeyDown={this.handleUpdatedDone} 
                 />
             </li>
         )
