@@ -65,6 +65,11 @@ class TodoContainer extends React.Component{
       })
     }
 
+    // The method changes todos state after updates in InputTodo-component while it's in editing mode
+    setUpdate = (updatedTitle, id) => {
+      console.log(updatedTitle, id)
+    }
+
     // Showing all todos titles like a list on the page
     render(){
         return(
@@ -76,6 +81,7 @@ class TodoContainer extends React.Component{
                   todos={this.state.todos} 
                   handleChangeProps={this.handleChange}
                   deleteTodoProps={this.delTodo}
+                  setUpdate={this.setUpdate}
                 />
             </div>
           </div>
