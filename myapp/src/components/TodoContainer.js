@@ -77,11 +77,23 @@ class TodoContainer extends React.Component{
       })
     }
 
-    // The method downloads data from the side sourde
+    // The method downloads data from the local storage of the browser
     componentDidMount() {
-      fetch("https://jsonplaceholder.typicode.com/todos?_limit=10")
-        .then(responce => responce.json())
-        .then(data => this.setState({ todos: data }))
+      const temp = localStorage.getItem("todos")
+      const loadedTodos = JSON.parse(temp)
+      if (loadedTodos) {
+        this.setState({
+          todos: loadedTodos
+        })
+      }
+    }
+
+    // The method saves the todos state to browser's local storage
+    componentDidUpdate(prevProps, prevState) {
+      if (prevState !== this.state.todos) {
+        const temp = JSON.stringify(this.state.todos)
+        localStorage.setItem("todos", temp)
+      }
     }
 
     // Showing all todos titles like a list on the page
