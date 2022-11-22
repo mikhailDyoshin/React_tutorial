@@ -62,6 +62,7 @@ const TodoContainer = () => {
       )
     }
 
+    // This method get saved todos from the local storage
     useEffect(() => {
       console.log("test useEffect")
 
@@ -73,6 +74,12 @@ const TodoContainer = () => {
         setTodos(loadedTodos)
       }
     }, [])
+
+    // This method stores todos whenever they are updated
+    useEffect(() => {
+      const temp = JSON.stringify(todos)
+      localStorage.setItem("todos", temp)
+    }, [todos])
 
     // Showing all todos like a list on the page
     return(
