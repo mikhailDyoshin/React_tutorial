@@ -9,7 +9,7 @@ import { v4 as uuidv4 } from "uuid"
 const TodoContainer = () => {
 
   // Using useState-hook
-  const [todos, setTodos] = useState([])
+  const [todos, setTodos] = useState(getInitialTodos())
 
   /* 
     This handleChange-method handles changes
@@ -63,17 +63,12 @@ const TodoContainer = () => {
     }
 
     // This method get saved todos from the local storage
-    useEffect(() => {
-      console.log("test useEffect")
-
-      // getting stored items
+    function getInitialTodos() {
+      //getting stored items
       const temp = localStorage.getItem("todos")
-      const loadedTodos = JSON.parse(temp)
-
-      if (loadedTodos) {
-        setTodos(loadedTodos)
-      }
-    }, [])
+      const savedTodos = JSON.parse(temp)
+      return savedTodos || []
+    }
 
     // This method stores todos whenever they are updated
     useEffect(() => {
