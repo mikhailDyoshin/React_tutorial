@@ -2,20 +2,33 @@ import React, { useState } from "react";
 
 const InputTodo = props => {
     /* Desctucturing the hook 
-     (first item is the current value,
-     second one - a function that allows to update the current value) 
+     (first item is the current state,
+     second one - a function that allows to update the current state) 
     */
-    const [title, setTitle] = useState("")
+    const [inputText, setInputText] = useState({
+        title: "",
+    })
 
     const onChange = e => {
-        setTitle(e.target.value)
+        setInputText({
+            /* 
+                without ...inputText a new value
+                will overwrite an old one,
+                that's why we should copy the last state 
+                and only then add to it new values
+            */
+            ...inputText,
+            [e.target.name]: e.target.value, 
+        })
     }
 
     const handleSubmit = e => {
         e.preventDefault()
-        if (title.trim()) {
-            props.addTodoProps(title)
-            setTitle("")
+        if (inputText.title.trim()) {
+            props.addTodoProps(inputText.title)
+            setInputText({
+                title: "",
+            })
         } else {
             alert("Please write item")
         }
@@ -27,7 +40,12 @@ const InputTodo = props => {
                 type="text"
                 className="input-text"
                 placeholder="Add todo..."
-                value={title}
+                value={inputText.title}
+                /* 
+                    The name attribute shoulde be the same
+                    as the state name (i.e. title in this case)
+                */
+                name="title" 
                 onChange={onChange}
             />
             <button className="input-submit">Submit</button>
