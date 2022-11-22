@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./TodoItem.module.scss"
 
 
@@ -30,6 +30,7 @@ const TodoItem = props => {
     const { completed, id, title } = props.todo
 
     // Logic than dinamically hides/display the todo's text field
+    // **********************************************************
     let viewMode = {}
     let editMode = {}
 
@@ -39,6 +40,13 @@ const TodoItem = props => {
         editMode.display = "none"
     }
     // ***********************************************************
+
+    // The method called any time a TodoItem is going to be unmounted
+    useEffect(() => {
+        return () => {
+            console.log("Cleaning up...")
+        }
+    }, [])
 
     return (
         <li className={styles.item}>
