@@ -7,6 +7,7 @@ import TodoContainer from "./functionBased/components/TodoContainer"
 import About from "./functionBased/components/About"
 import ErrorPage from "./functionBased/components/ErrorPage"
 
+
 // TodoContainer component
 const container = document.getElementById("root")
 const root = createRoot(container)

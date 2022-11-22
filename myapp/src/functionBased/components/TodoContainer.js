@@ -4,6 +4,8 @@ import Header from "./Header";
 import InputTodo from "./InputTodo";
 import { v4 as uuidv4 } from "uuid"
 
+import Navbar from "./Navbar"
+
 
 // Creating TodoContainer-component function based
 const TodoContainer = () => {
@@ -80,6 +82,7 @@ const TodoContainer = () => {
     return(
       <div className="container">
         <div className="inner">
+            <Navbar />
             <Header />
             <InputTodo addTodoProps={addTodoItem}/>
             <TodosList 
