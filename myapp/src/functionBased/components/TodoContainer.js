@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import TodosList from "./TodosList";
 import Header from "./Header";
 import InputTodo from "./InputTodo";
@@ -61,6 +61,18 @@ const TodoContainer = () => {
         })
       )
     }
+
+    useEffect(() => {
+      console.log("test useEffect")
+
+      // getting stored items
+      const temp = localStorage.getItem("todos")
+      const loadedTodos = JSON.parse(temp)
+
+      if (loadedTodos) {
+        setTodos(loadedTodos)
+      }
+    }, [])
 
     // Showing all todos like a list on the page
     return(
