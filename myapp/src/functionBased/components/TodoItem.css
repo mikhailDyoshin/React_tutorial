@@ -3,8 +3,17 @@
     list-style-type: none;
     padding: 17px 0px;
     border-bottom: 1px solid #eaeaea;
+
+    transition: all .6s ease;
 }
-  
+
+.deleting {
+    transform: scale(0);
+    /* opacity: 0; */
+    rotate: -180deg;
+}
+
+
 .checkbox {
     margin-right: 15px;
 }

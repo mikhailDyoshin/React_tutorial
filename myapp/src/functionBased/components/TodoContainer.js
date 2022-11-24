@@ -33,11 +33,14 @@ const TodoContainer = () => {
 
     // The delTodo method deletes todo 
     const delTodo = id => {
-      setTodos([
-        ...todos.filter(todo => {
-          return todo.id !== id
-        }),
-      ])
+      setTimeout(() => {
+        setTodos([
+          ...todos.filter(todo => {
+            return todo.id !== id
+          }),
+        ])
+      }, 600)     
+
     }
 
     // The addTodoItem creates a new todo

@@ -1,10 +1,12 @@
 import React from "react";
 import TodoItem from "./TodoItem";
+import "./TodosList.css"
+
 
 const TodosList = props => {
 
     return (
-        <ul>
+        <ul className="todos-list">
             {props.todos.map(todo => (
                 <TodoItem 
                     key={todo.id} 

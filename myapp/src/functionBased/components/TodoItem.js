@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
-import styles from "./TodoItem.module.scss"
+import React, { useState, useEffect, useRef } from "react";
 import { FaTrash } from "react-icons/fa"
+import classNames from "classnames"
+import "./TodoItem.css"
 
 
 const TodoItem = props => {
 
     // Taking state and methods
     const [editing, setEditing] = useState(false)
+
+    const [deleting, setDeleting] = useState(false)
 
     // Switching to editing mode
     const handleEditing = () => {
@@ -27,6 +30,10 @@ const TodoItem = props => {
         textDecoration: "line-through",
     }
 
+    const deletingStyle = classNames("item", {
+        "deleting" : deleting},
+        "", !deleting)
+
     // Destructuring
     const { completed, id, title } = props.todo
 
@@ -42,24 +49,53 @@ const TodoItem = props => {
     }
     // ***********************************************************
 
-    // The method called any time a TodoItem is going to be unmounted
+    const deleteOnClick = (id) => {
+        handleDelete()
+        props.deleteTodoProps(id)
+    }
+
+    let deletingMode = {}
+
+    if (deleting) {
+        deletingMode.textDecoration = "underline"
+    }
+
+    const handleDelete = () => {
+        setDeleting(true)
+    }
+
+
+    useEffect( () => console.log("Mounted/Updated"), [title, completed] );
+
+    const componentWillUnmount = useRef(false)
+
     useEffect(() => {
         return () => {
-            console.log("Cleaning up...")
+            componentWillUnmount.current = true
+        }
+    }, [])
+
+    useEffect(() => {
+        const deleted = componentWillUnmount.current
+        
+        return () => {
+            if (deleted) {
+                console.log("Unmounted")
+            }
         }
     }, [])
 
     return (
-        <li className={styles.item}>
+        <li className={deletingStyle}>
             {/* double-click event calls handleEditing method described above */}
             <div onDoubleClick={handleEditing} style={viewMode}> 
                 <input 
                     type="checkbox"
-                    className={styles.checkbox} 
+                    className="checkbox" 
                     checked={completed}
                     onChange={() => props.handleChangeProps(id)}
                 />
-                <button onClick={() => props.deleteTodoProps(id)}>
+                <button onClick={() => {deleteOnClick(id)}}>
                     <FaTrash 
                         style={{ 
                             color: "orangered", 
@@ -78,7 +114,7 @@ const TodoItem = props => {
             <input 
                 type="text" 
                 style={editMode} 
-                className={styles.textInput}
+                className="textInput"
                 value={title}
                 onChange={e => {
                     props.setUpdate(e.target.value, id)
